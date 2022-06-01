@@ -1,31 +1,6 @@
-# mev-boost
-
-[![Goreport status](https://goreportcard.com/badge/github.com/flashbots/mev-boost)](https://goreportcard.com/report/github.com/flashbots/mev-boost)
-[![Test status](https://github.com/flashbots/mev-boost/workflows/Go/badge.svg)](https://github.com/flashbots/mev-boost/actions?query=workflow%3A%22Go%22)
-[![Discord](https://img.shields.io/discord/755466764501909692)](https://discord.gg/7hvTycdNcK)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+# mev-bot
 
 A service that allows Ethereum Consensus Layer (CL) clients to outsource block construction to third party block builders in addition to execution clients.
-
-See also:
-
-* **[Builder API specification](https://ethereum.github.io/builder-specs/)** ([Github](https://github.com/ethereum/builder-specs))
-* [mev-boost Docker image](https://hub.docker.com/r/flashbots/mev-boost/tags)
-* [Integration docs (mev-boost wiki)](https://github.com/flashbots/mev-boost/wiki)
-
-Further references:
-
-* https://github.com/flashbots/mev-boost/wiki/The-Plan-(tm)
-* https://ethresear.ch/t/mev-boost-merge-ready-flashbots-architecture/11177/
-* https://hackmd.io/@paulhauner/H1XifIQ_t
-
----
-
-### System diagram
-
-![mev-boost service integration overview](https://raw.githubusercontent.com/flashbots/mev-boost/main/docs/mev-boost-integration-overview.png)
-
-([source](https://excalidraw.com/#json=VHl16agggXE1wIcnRD2RP,1irpGwhVpEgt6k05u-MbaQ))
 
 ### Request sequence
 
@@ -55,16 +30,6 @@ sequenceDiagram
     mev_boost-->>consensus: getPayload response
 ```
 
-# Developing
-
-
-Install required utilities:
-
-```bash
-go install github.com/ferranbt/fastssz/sszgen@latest
-go install github.com/mgechev/revive@latest
-go install honnef.co/go/tools/cmd/staticcheck@master
-```
 ## Build
 
 ```
@@ -74,7 +39,7 @@ make build
 and then run it with:
 
 ```
-./mev-boost
+./mev-bot
 ```
 
 ## Lint & Test
@@ -99,10 +64,10 @@ wget https://gist.githubusercontent.com/lightclient/799c727e826483a2804fc5013d0d
 openssl rand -hex 32 | tr -d "\n" > jwt.hex
 ```
 
-Then you can run an integration test with mergemock, spawning both a mergemock relay+execution engine and a mergemock consensus client pointing to mev-boost, which in turn points to the mergemock relay:
+Then you can run an integration test with mergemock, spawning both a mergemock relay+execution engine and a mergemock consensus client pointing to mev-bot, which in turn points to the mergemock relay:
 
 ```
-cd mev-boost
+cd mev-bot
 make run-mergemock-integration
 ```
 
