@@ -50,27 +50,6 @@ make lint
 make run-mergemock-integration
 ```
 
-## Testing with mergemock
-
-Mergemock is fully integrated: https://github.com/protolambda/mergemock
-
-Make sure you've setup and built mergemock first, refer to its [README](https://github.com/flashbots/mergemock#quick-start) but here's a quick setup guide:
-
-```
-git clone https://github.com/protolambda/mergemock.git
-cd mergemock
-go build . mergemock
-wget https://gist.githubusercontent.com/lightclient/799c727e826483a2804fc5013d0d3e3d/raw/2e8824fa8d9d9b040f351b86b75c66868fb9b115/genesis.json
-openssl rand -hex 32 | tr -d "\n" > jwt.hex
-```
-
-Then you can run an integration test with mergemock, spawning both a mergemock relay+execution engine and a mergemock consensus client pointing to mev-bot, which in turn points to the mergemock relay:
-
-```
-cd mev-bot
-make run-mergemock-integration
-```
-
 The path to the mergemock repo is assumed to be `../mergemock`, you can override like so:
 
 ```
